@@ -1,0 +1,3 @@
+[submodule "uts-connect"]
+	path = uts-connect
+	url = https://github.com/OscarF2834/uts-connect.git
