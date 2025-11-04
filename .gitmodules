@@ -1,3 +1,4 @@
-[submodule "uts-connect"]
-	path = uts-connect
+
+[submodule "frontend/uts-connect"]
+	path = frontend/uts-connect
 	url = https://github.com/OscarF2834/uts-connect.git
