@@ -18,7 +18,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => ['required', 'confirmed', Password::min(8)],
-            'role' => 'required|string',
+           'role' => 'required|string',
         ]);
 
         // Buscar rol
@@ -42,7 +42,7 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Usuario registrado correctamente',
             'user' => $user,
-            'role' => $role->name,
+            // 'role' => $role->name,
             'token' => $token,
         ], 201);
     }
