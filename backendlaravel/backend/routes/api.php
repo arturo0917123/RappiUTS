@@ -2,10 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\ProductController;
-use App\Http\Controllers\API\OrderController;
+use App\Http\Controllers\API\ProductoController;
+use App\Http\Controllers\API\PedidoController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\PagoController;
+use App\Http\Controllers\API\FavorController;
+use App\Http\Controllers\API\EmprendimientoController;
+use App\Http\Controllers\API\ResenaController;
+use App\Http\Controllers\API\NotificacionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,19 +57,54 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
     Route::delete('/roles/{role}', [RoleController::class, 'destroy']);
 
 
-// 🛒 Productos (públicos)
-Route::get('products', [ProductController::class, 'index']);
-Route::get('products/{product}', [ProductController::class, 'show']);
+// Productos
+Route::get('/productos', [ProductoController::class, 'index']);
+Route::post('/productos', [ProductoController::class, 'store']); // Crear
+Route::get('/productos/{producto}', [ProductoController::class, 'show']);
+Route::put('/productos/{producto}', [ProductoController::class, 'update']); // Editar
+Route::delete('/productos/{producto}', [ProductoController::class, 'destroy']); // Eliminar
 
-   
+// Pedidos
+Route::get('/pedidos', [PedidoController::class, 'index']);
+Route::post('/pedidos', [PedidoController::class, 'store']); // Crear
+Route::get('/pedidos/{pedido}', [PedidoController::class, 'show']);
+Route::put('/pedidos/{pedido}', [PedidoController::class, 'update']); // Editar
+Route::delete('/pedidos/{pedido}', [PedidoController::class, 'destroy']); // Eliminar
 
-    // CRUD de productos (solo autenticados)
-    Route::post('products', [ProductController::class, 'store']);
-    Route::put('products/{product}', [ProductController::class, 'update']);
-    Route::delete('products/{product}', [ProductController::class, 'destroy']);
+// Pagos
+Route::get('/pagos', [PagoController::class, 'index']);
+Route::post('/pagos', [PagoController::class, 'store']); // Crear
+Route::get('/pagos/{pago}', [PagoController::class, 'show']);
+Route::put('/pagos/{pago}', [PagoController::class, 'update']); // Editar
+Route::delete('/pagos/{pago}', [PagoController::class, 'destroy']); // Eliminar
 
-    // Pedidos
-    Route::get('orders', [OrderController::class, 'index']);
-    Route::get('orders/{order}', [OrderController::class, 'show']);
-    Route::post('orders', [OrderController::class, 'store']);
-    Route::put('orders/{order}/status', [OrderController::class, 'updateStatus']);
+
+// Favores
+Route::get('/favores', [FavorController::class, 'index']);
+Route::post('/favores', [FavorController::class, 'store']); // Crear
+Route::get('/favores/{favor}', [FavorController::class, 'show']);
+Route::put('/favores/{favor}', [FavorController::class, 'update']); // Editar
+Route::delete('/favores/{favor}', [FavorController::class, 'destroy']); // Eliminar
+
+
+// Emprendimientos
+Route::get('/emprendimientos', [EmprendimientoController::class, 'index']);
+Route::post('/emprendimientos', [EmprendimientoController::class, 'store']); // Crear
+Route::get('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'show']);
+Route::put('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'update']); // Editar
+Route::delete('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'destroy']); // Eliminar
+
+// Reseñas
+Route::get('/resenas', [ResenaController::class, 'index']);
+Route::post('/resenas', [ResenaController::class, 'store']); // Crear
+Route::get('/resenas/{resena}', [ResenaController::class, 'show']);
+Route::put('/resenas/{resena}', [ResenaController::class, 'update']); // Editar
+Route::delete('/resenas/{resena}', [ResenaController::class, 'destroy']); // Eliminar
+
+
+// Notificaciones
+Route::get('/notificaciones', [NotificacionController::class, 'index']);
+Route::post('/notificaciones', [NotificacionController::class, 'store']); // Crear
+Route::get('/notificaciones/{notificacion}', [NotificacionController::class, 'show']);
+Route::put('/notificaciones/{notificacion}', [NotificacionController::class, 'update']); // Editar
+Route::delete('/notificaciones/{notificacion}', [NotificacionController::class, 'destroy']); // Eliminar

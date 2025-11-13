@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -27,23 +25,34 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    // 🔗 Relaciones
+    // Relaciones
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function products()
+    public function pedidos()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Pedido::class);
     }
 
-    public function orders()
+    public function favores()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Favor::class);
+    }
+
+    public function resenas()
+    {
+        return $this->hasMany(Resena::class);
+    }
+
+    public function notificaciones()
+    {
+        return $this->hasMany(Notificacion::class);
+    }
+
+    public function emprendimientos()
+    {
+        return $this->hasMany(Emprendimiento::class);
     }
 }

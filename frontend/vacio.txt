@@ -1,0 +1,4 @@
+php artisan migrate:refresh
+
+//necesita esto para el login
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
