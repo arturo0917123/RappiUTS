@@ -9,6 +9,8 @@ class Notificacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'notificaciones';
+
     protected $fillable = [
         'user_id',
         'mensaje',
@@ -21,3 +23,4 @@ class Notificacion extends Model
         return $this->belongsTo(User::class);
     }
 }
+

@@ -19,10 +19,11 @@ class FavorController extends Controller
             'user_id' => 'required|exists:users,id',
             'descripcion' => 'required|string',
             'recompensa' => 'nullable|numeric|min:0',
-            'estado' => 'nullable|string|max:50',
+            'estado' => 'sometimes|string|max:50',
         ]);
 
         $favor = Favor::create($data);
+
         return response()->json($favor, 201);
     }
 
@@ -40,12 +41,14 @@ class FavorController extends Controller
         ]);
 
         $favor->update($data);
+
         return response()->json($favor);
     }
 
     public function destroy(Favor $favor)
     {
         $favor->delete();
+
         return response()->json(['message' => 'Favor eliminado']);
     }
 }

@@ -12,8 +12,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->text('descripcion');
-             $table->integer('recompensa');
+            $table->integer('recompensa')->nullable();
+
+
+
             $table->string('estado')->default('pendiente');
+
             $table->timestamps();
         });
     }

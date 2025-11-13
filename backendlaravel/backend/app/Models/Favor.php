@@ -9,6 +9,8 @@ class Favor extends Model
 {
     use HasFactory;
 
+    protected $table = 'favores';
+
     protected $fillable = [
         'user_id',
         'descripcion',

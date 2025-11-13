@@ -10,7 +10,7 @@ class PedidoController extends Controller
 {
     public function index()
     {
-        return Pedido::with(['user', 'detalles.producto', 'pago'])->get();
+        return Pedido::with(['user', 'detalles', 'pago'])->get();
     }
 
     public function store(Request $request)
@@ -23,28 +23,44 @@ class PedidoController extends Controller
         ]);
 
         $pedido = Pedido::create($data);
-        return response()->json($pedido, 201);
+
+        return response()->json([
+            "message" => "Pedido creado correctamente",
+            "pedido"  => $pedido
+        ], 201);
     }
 
-    public function show(Pedido $pedido)
+    public function show($id)
     {
-        return $pedido->load(['user', 'detalles.producto', 'pago']);
+        $pedido = Pedido::with(['user', 'detalles', 'pago'])->findOrFail($id);
+        return $pedido;
     }
 
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, $id)
     {
+        $pedido = Pedido::findOrFail($id);
+
         $data = $request->validate([
+            'fecha' => 'sometimes|date',
             'estado' => 'sometimes|string',
             'total' => 'sometimes|numeric|min:0',
         ]);
 
         $pedido->update($data);
-        return response()->json($pedido);
+
+        return response()->json([
+            "message" => "Pedido actualizado",
+            "pedido"  => $pedido
+        ]);
     }
 
-    public function destroy(Pedido $pedido)
+    public function destroy($id)
     {
+        $pedido = Pedido::findOrFail($id);
         $pedido->delete();
-        return response()->json(['message' => 'Pedido eliminado']);
+
+        return response()->json([
+            "message" => "Pedido eliminado correctamente"
+        ]);
     }
 }
