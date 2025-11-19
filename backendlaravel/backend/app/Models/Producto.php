@@ -13,6 +13,7 @@ class Producto extends Model
         'emprendimiento_id',
         'nombre',
         'descripcion',
+        'categoria',
         'precio',
         'stock',
     ];

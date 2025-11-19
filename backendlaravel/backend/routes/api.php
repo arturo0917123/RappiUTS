@@ -93,6 +93,7 @@ Route::post('/emprendimientos', [EmprendimientoController::class, 'store']); // 
 Route::get('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'show']);
 Route::put('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'update']); // Editar
 Route::delete('/emprendimientos/{emprendimiento}', [EmprendimientoController::class, 'destroy']); // Eliminar
+Route::get('/emprendimientos/user/{user_id}', [EmprendimientoController::class, 'getByUser']); // Obtener emprendimientos por user_id
 
 // Reseñas
 Route::get('/resenas', [ResenaController::class, 'index']);
@@ -104,7 +105,11 @@ Route::delete('/resenas/{resena}', [ResenaController::class, 'destroy']); // Eli
 
 // Notificaciones
 Route::get('/notificaciones', [NotificacionController::class, 'index']);
-Route::post('/notificaciones', [NotificacionController::class, 'store']); // Crear
-Route::get('/notificaciones/{notificacion}', [NotificacionController::class, 'show']);
-Route::put('/notificaciones/{notificacion}', [NotificacionController::class, 'update']); // Editar
-Route::delete('/notificaciones/{notificacion}', [NotificacionController::class, 'destroy']); // Eliminar
+Route::post('/notificaciones', [NotificacionController::class, 'store']);
+
+Route::get('/notificaciones/destinatario/{id}', [NotificacionController::class, 'destinatario']); // ← PRIMERO
+
+Route::get('/notificaciones/{notificacion}', [NotificacionController::class, 'show']); // ← DESPUÉS
+Route::put('/notificaciones/{notificacion}', [NotificacionController::class, 'update']);
+Route::delete('/notificaciones/{notificacion}', [NotificacionController::class, 'destroy']);
+

@@ -19,6 +19,7 @@ class ProductoController extends Controller
             'emprendimiento_id' => 'required|exists:emprendimientos,id',
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
+            'categoria' => 'nullable|string|max:50',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
         ]);

@@ -50,4 +50,12 @@ class EmprendimientoController extends Controller
         $emprendimiento->delete();
         return response()->json(['message' => 'Emprendimiento eliminado']);
     }
+
+    public function getByUser($user_id)
+    {
+        $emprendimientos = Emprendimiento::with(['user', 'productos'])
+            ->where('user_id', $user_id)
+            ->get();
+        return response()->json($emprendimientos);
+    }
 }
