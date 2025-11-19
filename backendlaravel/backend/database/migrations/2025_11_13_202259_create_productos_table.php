@@ -6,19 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('emprendimiento_id')->constrained('emprendimientos')->onDelete('cascade');
+
+            // Llave foránea al emprendimiento
+            $table->unsignedBigInteger('emprendimiento_id');
+            $table->foreign('emprendimiento_id')
+                  ->references('id')
+                  ->on('emprendimientos')
+                  ->onDelete('cascade');
+
             $table->string('nombre');
             $table->text('descripcion')->nullable();
-            $table->integer('precio')->default(0);
+            $table->string('categoria')->nullable();
+            $table->decimal('precio', 10, 2)->default(0);
             $table->integer('stock')->default(0);
+
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('productos');
